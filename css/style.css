@@ -1,0 +1,41 @@
+:root {
+    --pink: #e9d6e8;
+    --brown: #b1b1b183;
+    --brown2: #5a5856;
+
+}
+
+#header {
+    background-color: var(--pink) ;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.2em;
+
+}
+
+#main {
+    background-color: var(--brown);
+}
+
+#p1-main {
+    display: flex;
+    justify-content: center;
+    font-size: 1.3em;
+}
+
+.name-play {
+    color: var(--brown2);
+    font-weight: 700;
+    font-size: 2em;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.row-draw1, .row-draw2 {
+    border-bottom: 5px solid var(--brown2);
+}
+
+.col-draw {
+    border-right: 5px solid var(--brown2);
+    height: 15vh;
+}
+
+

@@ -1,6 +1,6 @@
 :root {
     --pink: #e9d6e8;
-    --brown: #b1b1b183;
+    --brown: #6d6d6d83;
     --brown2: #5a5856;
 
 }
@@ -27,6 +27,7 @@
     font-weight: 700;
     font-size: 2em;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-left: 0.3em;
 }
 
 .row-draw1, .row-draw2 {
@@ -35,7 +36,7 @@
 
 .col-draw {
     border-right: 5px solid var(--brown2);
-    height: 15vh;
+    height: 17vh;
 }
 
 

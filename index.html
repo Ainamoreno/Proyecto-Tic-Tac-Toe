@@ -12,41 +12,62 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/index.css">
     <script src="https://kit.fontawesome.com/6da7aeac50.js" crossorigin="anonymous"></script>
     <title>Tic Tac Toe</title>
 </head>
 
 <body>
-    <div id="header" >Juego Tic Tac Toe</div>
+    <div id="header">Juego Tic Tac Toe</div>
     <div id="main" class="">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <p class="d-flex align-items-center" id="p1-main">Bienvenid@s al juego <span class="name-play"> TIC TAC TOE </span></p>
+                    <p class="d-flex align-items-center" id="p1-main">Bienvenid@s al juego <span class="name-play"> TIC
+                            TAC TOE </span></p>
                 </div>
             </div>
         </div>
-        <div class="container div-draw w-25">
-            <div class="row row-draw1">
-                <div class="col col-draw d-flex justify-content-center align-items-center"><i class="fa-solid fa-xmark fa-4x"></i></div>
-                <div class="col col-draw d-flex justify-content-center align-items-center"></div>
-                <div class="col d-flex justify-content-center align-items-center"><i class="fa-regular fa-circle fa-3x"></i></div>
+        <div class="container div-draw ">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="row  row-draw1">
+                        <div class="col col-draw d-flex justify-content-center align-items-center"><i
+                                class="fa-solid fa-xmark fa-2x"></i></div>
+                        <div class="col col-draw d-flex justify-content-center align-items-center"></div>
+                        <div class="col d-flex justify-content-center align-items-center"><i
+                                class="fa-regular fa-circle fa-2x"></i></div>
+                    </div>
+                    <div class="row  row-draw2">
+                        <div class="col col-draw d-flex justify-content-center align-items-center"></div>
+                        <div class="col col-draw d-flex justify-content-center align-items-center"><i
+                                class="fa-solid fa-heart fa-2x"></i></div>
+                        <div class="col d-flex justify-content-center align-items-center"></div>
+                    </div>
+                    <div class="row row-draw3">
+                        <div class="col col-draw d-flex justify-content-center align-items-center"></div>
+                        <div class="col col-draw d-flex justify-content-center align-items-center"><i
+                                class="fa-solid fa-xmark fa-2x"></i></div>
+                        <div class="col d-flex justify-content-center align-items-center "><i
+                                class="fa-regular fa-circle fa-2x"></i></div>
+                    </div>
+                </div>
+                <div class="col-sm ">
+                    <h1 class=" d-flex justify-content-center" >Intrucciones</h1>
+                    <p>Encontrarás en la partida dos líneas horizontales y dos verticales, formando una cuadrícula (como veis a la izquierda). 
+                    <p>Cada jugador elige las X o las O, y en su turno debe poner una, intentando conseguir 3 seguidas en
+                        una línea vertical, horizontal o diagonal. Cada jugador, puede tener en juego como máximo, tres fichas.</p>
+                     <p>En caso de tener las tres fichas en juego, el usuario ha de seleccionar una posición ocupada
+                        por sus piezas para modificar la posición de esta a una nueva. </p>
+                        
+
+                </div>
             </div>
-            <div class="row row-draw2">
-                <div class="col col-draw d-flex justify-content-center align-items-center"></div>
-                <div class="col col-draw d-flex justify-content-center align-items-center"><i class="fa-solid fa-heart fa-4x"></i></div>
-                <div class="col d-flex justify-content-center align-items-center"></div>
-            </div>
-            <div class="row row-draw3">
-                <div class="col col-draw d-flex justify-content-center align-items-center"></div>
-                <div class="col col-draw d-flex justify-content-center align-items-center"><i class="fa-solid fa-xmark fa-4x"></i></div>
-                <div class="col d-flex justify-content-center align-items-center "><i class="fa-regular fa-circle fa-3x"></i></div>
-            </div>
+
         </div>
-        
+
         <div class="d-flex justify-content-center m-4">
-            <a class="btn btn-outline-primary" href="#" role="button">START</a>
+            <a class="btn btn-outline-primary" href="./pages/play.html" role="button">START</a>
         </div>
 
     </div>

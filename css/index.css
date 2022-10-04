@@ -8,7 +8,7 @@
 #header {
     background-color: var(--pink) ;
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 1.2em;
+    font-size: 1.5em;
 
 }
 
@@ -19,7 +19,7 @@
 #p1-main {
     display: flex;
     justify-content: center;
-    font-size: 1.3em;
+    font-size: 1.2em;
 }
 
 .name-play {
@@ -30,6 +30,8 @@
     margin-left: 0.3em;
 }
 
+
+
 .row-draw1, .row-draw2 {
     border-bottom: 5px solid var(--brown2);
 }
@@ -37,6 +39,12 @@
 .col-draw {
     border-right: 5px solid var(--brown2);
     height: 17vh;
+}
+
+#footer {
+    border-top: 1px solid var(--brown);
+    color: var(--brown);
+    background-color: var(--pink) ;
 }
 
 

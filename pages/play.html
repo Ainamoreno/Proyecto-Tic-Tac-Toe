@@ -24,27 +24,30 @@
             <div class="row">
                 <div class="col-sm mt-4">
                     <div class="container div-draw">
-                        <div class="row row-draw1">
-                            <div class="col col-draw d-flex justify-content-center align-items-center"></div>
-                            <div class="col col-draw d-flex justify-content-center align-items-center"></div>
-                            <div class="col d-flex justify-content-center align-items-center"></div>
+                        <div class="row  row-draw1">
+                            <div class="col col-draw d-flex justify-content-center align-items-center"><i
+                                class="fa-solid fa-xmark fa-4x icon-x"></i></div>
+                            <div class="col col-draw d-flex justify-content-center align-items-center"><i
+                                class="fa-solid fa-xmark fa-4x icon-x"></i></div>
+                            <div class="col d-flex justify-content-center align-items-center">3</div>
                         </div>
-                        <div class="row row-draw2">
-                            <div class="col col-draw d-flex justify-content-center align-items-center"></div>
-                            <div class="col col-draw d-flex justify-content-center align-items-center"></div>
-                            <div class="col d-flex justify-content-center align-items-center"></div>
+                        <div class="row  row-draw2">
+                            <div class="col col-draw d-flex justify-content-center align-items-center"><i class="fa-regular fa-circle fa-4x icon-circle"></i></div>
+                            <div class="col col-draw d-flex justify-content-center align-items-center">5</div>
+                            <div class="col d-flex justify-content-center align-items-center"><i
+                                class="fa-solid fa-xmark fa-4x icon-x"></i></div>
                         </div>
                         <div class="row row-draw3">
-                            <div class="col col-draw d-flex justify-content-center align-items-center"></div>
-                            <div class="col col-draw d-flex justify-content-center align-items-center"></div>
-                            <div class="col d-flex justify-content-center align-items-center "></div>
+                            <div class="col col-draw d-flex justify-content-center align-items-center">7</div>
+                            <div class="col col-draw d-flex justify-content-center align-items-center"><i class="fa-regular fa-circle fa-4x icon-circle"></i></div>
+                            <div class="col d-flex justify-content-center align-items-center "><i class="fa-regular fa-circle fa-4x icon-circle"></i></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm mt-4">
                     <div class="mb-3">
-                        <label id="name-player1" for="input-jugador1" class="form-label">Jugador 1</label>
-                        <input type="email" class="form-control" id="input-jugador1"
+                        <label for="input-jugador1" class="form-label">Jugador 1</label>
+                        <input type="email" class="form-control" id="name-player1"
                             placeholder="Introducir nombre del jugador 1">
                     </div>
                     <div class="form-check form-check-inline">
@@ -57,8 +60,8 @@
                       </div>
                     <hr>
                     <div class="mb-3">
-                        <label id="name-player2" for="input-jugador2" class="form-label">Jugador 2</label>
-                        <input type="email" class="form-control" id="input-jugador2"
+                        <label for="input-jugador2" class="form-label">Jugador 2</label>
+                        <input type="email" class="form-control" id="name-player2"
                             placeholder="Introducir nombre del jugador 2">
                     </div>
                     <div class="form-check form-check-inline">
@@ -70,7 +73,7 @@
                         <label class="form-check-label" for="player2-option2">CPU</label>
                       </div>
                       <div class="d-flex justify-content-center">
-                        <a class="btn btn-outline-primary m-5" href="./start.html" role="button">PULSA PARA EMPEZAR LA PARTIDA</a>
+                        <a class="btn btn-outline-primary m-5" href="../pages/start.html" role="button" onclick="mostrarDatosJugador()">PULSA PARA EMPEZAR LA PARTIDA</a>
                     </div>
                 </div>
             </div>

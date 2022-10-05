@@ -5,14 +5,20 @@
 
 }
 
+* {
+    box-sizing: border-box;
+}
+
+
 #header {
     background-color: var(--pink) ;
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 1.5em;
+    height: 5vh;
 
 }
 
-#main {
+body {
     background-color: var(--brown);
 }
 
@@ -30,18 +36,32 @@
     margin-left: 0.3em;
 }
 
-
-
 .row-draw1, .row-draw2 {
     border-bottom: 5px solid var(--brown2);
 }
 
 .col-draw {
+    height: 6.5em;
     border-right: 5px solid var(--brown2);
-    height: 17vh;
+
+}
+
+.icon-x {
+    padding: 0.1em;
+    box-shadow: 0px 0px 20px 0px;
+    color: #424666;
+    border-radius: 50%;
+}
+
+.icon-circle {
+    padding: 0.1em;
+    box-shadow: 0px 0px 20px 0px;
+    color: #e9cce0;
+    border-radius: 50%;
 }
 
 #footer {
+    height: 5vh;
     border-top: 1px solid var(--brown);
     color: var(--brown);
     background-color: var(--pink) ;

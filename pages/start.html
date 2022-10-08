@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,42 +13,71 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/start.css">
+    <!-- <link rel="stylesheet" href="../css/start.css"> -->
     <script src="https://kit.fontawesome.com/6da7aeac50.js" crossorigin="anonymous"></script>
     <title>Tic Tac Toe</title>
 </head>
+
 <body>
     <div id="header" class="container-fluid">Juego Tic Tac Toe</div>
     <div id="main">
         <div class="container">
             <div class="row">
-                <div class="col-md-8  mt-5 mb-5">
-                        <div class="row  row-draw1">
-                            <div class="col col-draw d-flex justify-content-center align-items-center"><i
-                                class="fa-solid fa-xmark fa-4x icon-x"></i></div>
-                            <div class="col col-draw d-flex justify-content-center align-items-center"><i
-                                class="fa-solid fa-xmark fa-4x icon-x"></i></div>
-                            <div class="col d-flex justify-content-center align-items-center">3</div>
+                <div class="col-md-7  mt-5 mb-5">
+                    <div class="row  row-draw1">
+                        <div id="cell-1" onclick="clickFicha(1)"
+                            class="col col-draw d-flex justify-content-center align-items-center"><i
+                                class="fa-solid fa-xmark fa-4x icon-x" style="display:none;" id="icon1-x"></i><i
+                                class="fa-regular fa-circle fa-4x icon-o" id="icon1-o" style="display: none;"></i>
                         </div>
-                        <div class="row  row-draw2">
-                            <div class="col col-draw d-flex justify-content-center align-items-center"><i class="fa-regular fa-circle fa-4x icon-circle"></i></div>
-                            <div class="col col-draw d-flex justify-content-center align-items-center">5</div>
-                            <div class="col d-flex justify-content-center align-items-center"><i
-                                class="fa-solid fa-xmark fa-4x icon-x"></i></div>
+                        <div id="cell-2" onclick="clickFicha(2)"
+                            class="col col-draw d-flex justify-content-center align-items-center"><i
+                                class="fa-solid fa-xmark fa-4x icon-x" style="display:none;" id="icon2-x"></i><i
+                                class="fa-regular fa-circle fa-4x icon-o" id="icon2-o" style="display: none;"></i>
                         </div>
-                        <div class="row row-draw3">
-                            <div class="col col-draw d-flex justify-content-center align-items-center">7</div>
-                            <div class="col col-draw d-flex justify-content-center align-items-center"><i class="fa-regular fa-circle fa-4x icon-circle"></i></div>
-                            <div class="col d-flex justify-content-center align-items-center "><i class="fa-regular fa-circle fa-4x icon-circle"></i></div>
+                        <div id="cell-3" onclick="clickFicha(3)" class="col d-flex justify-content-center align-items-center"><i
+                                class="fa-solid fa-xmark fa-4x icon-x" style="display:none;" id="icon3-x"></i><i
+                                class="fa-regular fa-circle fa-4x icon-o" id="icon3-o" style="display: none;"></i>
                         </div>
+                    </div>
+                    <div class="row  row-draw2">
+                        <div id="cell-4" onclick="clickFicha(4)"
+                            class="col col-draw d-flex justify-content-center align-items-center"><i
+                                class="fa-solid fa-xmark fa-4x icon-x" style="display:none;" id="icon4-x"></i><i
+                                class="fa-regular fa-circle fa-4x icon-o" id="icon4-o" style="display: none;"></i>
+                        </div>
+                        <div id="cell-5" onclick="clickFicha(5)" class="col col-draw d-flex justify-content-center align-items-center"><i
+                                class="fa-solid fa-xmark fa-4x icon-x" style="display:none;" id="icon5-x"></i><i
+                                class="fa-regular fa-circle fa-4x icon-o" id="icon5-o" style="display: none;"></i>
+                        </div>
+                        <div id="cell-6" onclick="clickFicha(6)" class="col d-flex justify-content-center align-items-center"><i
+                                class="fa-solid fa-xmark fa-4x icon-x" style="display:none;" id="icon6-x"></i><i
+                                class="fa-regular fa-circle fa-4x icon-o" id="icon6-o" style="display: none;"></i>
+                        </div>
+                    </div>
+                    <div class="row row-draw3">
+                        <div id="cell-7" onclick="clickFicha(7)" class="col col-draw d-flex justify-content-center align-items-center"><i
+                                class="fa-solid fa-xmark fa-4x icon-x" style="display:none;" id="icon7-x"></i><i
+                                class="fa-regular fa-circle fa-4x icon-o" id="icon7-o" style="display: none;"></i>
+                        </div>
+                        <div id="cell-8" onclick="clickFicha(8)" class="col col-draw d-flex justify-content-center align-items-center"><i
+                                class="fa-solid fa-xmark fa-4x icon-x" style="display:none;" id="icon8-x"></i><i
+                                class="fa-regular fa-circle fa-4x icon-o" id="icon8-o" style="display: none;"></i>
+                        </div>
+                        <div id="cell-9" onclick="clickFicha(9)" class="col d-flex justify-content-center align-items-center "><i
+                                class="fa-solid fa-xmark fa-4x icon-x" style="display:none;" id="icon9-x"></i><i
+                                class="fa-regular fa-circle fa-4x icon-o" id="icon9-o" style="display: none;"></i>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4  ">
+                <div id="turno-de" class="col-md-4  ">
                     <h5 class="d-flex justify-content-center">Información de la partida</h5>
-                    <p>Turno de jugador 1</p>
                 </div>
             </div>
         </div>
     </div>
     <div></div>
+    <script src="../js/main.js"></script>
 </body>
+
 </html>

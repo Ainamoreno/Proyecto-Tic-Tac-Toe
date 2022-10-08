@@ -1,25 +1,21 @@
 :root {
     --pink: #e9d6e8;
-    --brown: #6d6d6d83;
-    --brown2: #5a5856;
+    --brown: #e0dada;
+    --brown2: #3f392ed0;
 
 }
-
-* {
-    box-sizing: border-box;
-}
-
 
 #header {
-    background-color: var(--pink) ;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: white;
+    background-color: var(--brown2);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 1.5em;
     height: 5vh;
 
 }
 
 body {
-    background-color: var(--brown);
+    background-color: #ff00001c;
 }
 
 #p1-main {
@@ -36,7 +32,8 @@ body {
     margin-left: 0.3em;
 }
 
-.row-draw1, .row-draw2 {
+.row-draw1,
+.row-draw2 {
     border-bottom: 5px solid var(--brown2);
 }
 
@@ -49,14 +46,14 @@ body {
 .icon-x {
     padding: 0.1em;
     box-shadow: 0px 0px 20px 0px;
-    color: #424666;
+    color: var(--brown2);
     border-radius: 50%;
 }
 
-.icon-circle {
+.icon-o {
     padding: 0.1em;
     box-shadow: 0px 0px 20px 0px;
-    color: #e9cce0;
+    color: #e94eb8;
     border-radius: 50%;
 }
 
@@ -64,7 +61,15 @@ body {
     height: 5vh;
     border-top: 1px solid var(--brown);
     color: var(--brown);
-    background-color: var(--pink) ;
+    background-color: var(--brown2);
 }
 
+.btn-start {
+    color: black;
+    border: 0;
+}
 
+.btn-start:hover {
+    color: var(--brown2);
+    background-color: var(--pink);
+}

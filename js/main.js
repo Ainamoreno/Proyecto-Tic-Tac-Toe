@@ -86,23 +86,40 @@ const clickFicha = (posicion) => {
     let arrayTurno = celdas.filter(celda => celda.seleccionadaPor == 1 || celda.seleccionadaPor == 2);
     let celda = celdas.find(celda => celda.posicion == posicion);
 
+    // casuítica de que entre en el if en caso de que la celda no esté seleccionada
     if (celda.seleccionada == false) {
 
         if (arrayTurno.length <= 5) {
             celda.seleccionada = true;
             celda.seleccionadaPor = turno;
             mostrarOcultarFicha('block', posicion);
+
+            let arrayJugadorTurno = celdas.filter(celda => celda.seleccionadaPor == turno);
+            if (arrayJugadorTurno.length == 3) {
+                if (arrayJugadorTurno[0].posicion == 1 && arrayJugadorTurno[1].posicion == 2 && 
+                    arrayJugadorTurno[2].posicion == 3) {
+                    alert("Enhorabuena has ganado")
+                }
+            }
+
             turno = turno === 1 ? 2 : 1;
         } else {
             alert('No puede añadir ninguna ficha más');
         }
 
+        // casuítica de que estén 6 celdas seleccionadas y se de click a una celda que le pertenezca al jugador
     } else if (arrayTurno.length >= 6 && celda.seleccionadaPor == turno) {
         mostrarOcultarFicha('none', posicion);
         celda.seleccionada = false;
         celda.seleccionadaPor = undefined;
     }
+
+
+    console.log(celda)
     mostrarInformacion()
+    console.log(arrayTurno)
+
+
 };
 
 mostrarOcultarFicha = (display, posicion) => {
@@ -115,13 +132,15 @@ mostrarOcultarFicha = (display, posicion) => {
     }
 };
 
+
+
 const mostrarInformacion = () => {
     if (turno == 1) {
-        parrafoTurno.innerHTML =  " ";
+        parrafoTurno.innerHTML = " ";
         const nombre = JSON.parse(localStorage.getItem("LISTA_JUGADORES"))[0].nombre;
         parrafoTurno.innerHTML += `<p>Turno de ${nombre}</p>`;
     } else {
-        parrafoTurno.innerHTML =  " ";
+        parrafoTurno.innerHTML = " ";
         const nombre = JSON.parse(localStorage.getItem("LISTA_JUGADORES"))[1].nombre;
         parrafoTurno.innerHTML += `<p>Turno de ${nombre}</p>`;
     }

@@ -94,7 +94,7 @@ const clickFicha = (posicion) => {
             mostrarOcultarFicha('block', posicion);
             turno = turno === 1 ? 2 : 1;
         } else {
-            alert('No puede añadir ninguna ficha más');  
+            alert('No puede añadir ninguna ficha más');
         }
 
     } else if (arrayTurno.length >= 6 && celda.seleccionadaPor == turno) {
@@ -102,7 +102,7 @@ const clickFicha = (posicion) => {
         celda.seleccionada = false;
         celda.seleccionadaPor = undefined;
     }
-    console.log(arrayTurno.length);
+    mostrarInformacion()
 };
 
 mostrarOcultarFicha = (display, posicion) => {
@@ -116,8 +116,16 @@ mostrarOcultarFicha = (display, posicion) => {
 };
 
 const mostrarInformacion = () => {
-    const nombre = JSON.parse(localStorage.getItem("LISTA_JUGADORES"))[0].nombre;
-    parrafoTurno.innerHTML += `<p>Turno de ${nombre}</p>`;
-}
+    if (turno == 1) {
+        parrafoTurno.innerHTML =  " ";
+        const nombre = JSON.parse(localStorage.getItem("LISTA_JUGADORES"))[0].nombre;
+        parrafoTurno.innerHTML += `<p>Turno de ${nombre}</p>`;
+    } else {
+        parrafoTurno.innerHTML =  " ";
+        const nombre = JSON.parse(localStorage.getItem("LISTA_JUGADORES"))[1].nombre;
+        parrafoTurno.innerHTML += `<p>Turno de ${nombre}</p>`;
+    }
 
-mostrarInformacion()
+};
+mostrarInformacion();
+

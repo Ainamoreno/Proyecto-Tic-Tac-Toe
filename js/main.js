@@ -1,159 +1,157 @@
 // Divs | Párrafos de la partida
-const parrafoTurno = document.getElementById('turno-de');
+const textTurn = document.getElementById('turno-de');
 
 // Constantes información del jugador
 
-const nombreJugadorUno = document.getElementById('name-player1');
-const nombreJugadorDos = document.getElementById('name-player2');
+const namePlayer1 = document.getElementById('name-player1');
+const namePlayer2 = document.getElementById('name-player2');
 
-const opcionHumanoJ1 = document.getElementById('player1-option1');
-const opcionHumanoJ2 = document.getElementById('player2-option1');
-let turno = 1;
+const optionHumanJ1 = document.getElementById('player1-option1');
+const optionHumanJ2 = document.getElementById('player2-option1');
+let turn = 1;
 
 // Objetos
 
-const celdas = [
+const cells = [
     {
-        posicion: 1,
-        seleccionada: false,
-        seleccionadaPor: undefined
+        position: 1,
+        selected: false,
+        selectedFor: undefined
     },
     {
-        posicion: 2,
-        seleccionada: false,
-        seleccionadaPor: undefined
+        position: 2,
+        selected: false,
+        selectedFor: undefined
     },
     {
-        posicion: 3,
-        seleccionada: false,
-        seleccionadaPor: undefined
+        position: 3,
+        selected: false,
+        selectedFor: undefined
     },
     {
-        posicion: 4,
-        seleccionada: false,
-        seleccionadaPor: undefined
+        position: 4,
+        selected: false,
+        selectedFor: undefined
     },
     {
-        posicion: 5,
-        seleccionada: false,
-        seleccionadaPor: undefined
+        position: 5,
+        selected: false,
+        selectedFor: undefined
     },
     {
-        posicion: 6,
-        seleccionada: false,
-        seleccionadaPor: undefined
+        position: 6,
+        selected: false,
+        selectedFor: undefined
     },
     {
-        posicion: 7,
-        seleccionada: false,
-        seleccionadaPor: undefined
+        position: 7,
+        selected: false,
+        selectedFor: undefined
     },
     {
-        posicion: 8,
-        seleccionada: false,
-        seleccionadaPor: undefined
+        position: 8,
+        selected: false,
+        selectedFor: undefined
     },
     {
-        posicion: 9,
-        seleccionada: false,
-        seleccionadaPor: undefined
+        position: 9,
+        selected: false,
+        selectedFor: undefined
     },
 ]
 
 // Función datos jugador
-const mostrarDatosJugador = () => {
-    if (nombreJugadorUno.value == "" || nombreJugadorDos.value == "") {
+const showPlayerData = () => {
+    if (namePlayer1.value == "" || namePlayer2.value == "") {
         alert('Vuelva a la página anterior e introduce datos válidos');
     } else {
-        listaJugadores = JSON.parse(sessionStorage.getItem('LISTA_JUGADORES'));
+        playersList = JSON.parse(sessionStorage.getItem('LISTA_JUGADORES'));
 
-        listaJugadores = [
+        playersList = [
             {
-                nombre: nombreJugadorUno.value,
-                humano: opcionHumanoJ1.checked
+                name: namePlayer1.value,
+                human: optionHumanJ1.checked
             },
             {
-                nombre: nombreJugadorDos.value,
-                humano: opcionHumanoJ2.checked
+                name: namePlayer2.value,
+                human: optionHumanJ2.checked
             }
         ]
-        sessionStorage.setItem('LISTA_JUGADORES', JSON.stringify(listaJugadores));
+        sessionStorage.setItem('LISTA_JUGADORES', JSON.stringify(playersList));
         window.location.href = "start.html";
     }
-}
+};
 
-const clickFicha = (posicion) => {
-    let arrayTurno = celdas.filter(celda => celda.seleccionadaPor == 1 || celda.seleccionadaPor == 2);
-    let celda = celdas.find(celda => celda.posicion == posicion);
+const clickIcon = (position) => {
+    let arrayTurn = celdas.filter(cell => cell.selectedFor == 1 || cell.selectedFor == 2);
+    let cell = cells.find(cell => cell.position == position);
 
     // casuítica de que entre en el if en caso de que la celda no esté seleccionada
-    if (celda.seleccionada == false) {
+    if (cell.selected == false) {
 
-        if (arrayTurno.length <= 5) {
-            celda.seleccionada = true;
-            celda.seleccionadaPor = turno;
-            mostrarOcultarFicha('block', posicion);
+        if (arrayTurn.length <= 5) {
+            cell.selected = true;
+            cell.selectedFor = turn;
+            showHideIcon('block', position);
 
-            validarPosicionesGanadoras(1, 2, 3);
-            validarPosicionesGanadoras(4, 5, 6);
-            validarPosicionesGanadoras(7, 8, 9);
-            validarPosicionesGanadoras(3, 6, 9);
-            validarPosicionesGanadoras(2, 5, 8);
-            validarPosicionesGanadoras(1, 4, 7);
-            validarPosicionesGanadoras(3, 5, 7);
-            validarPosicionesGanadoras(1, 5, 9);
+            validateWinningOptions(1, 2, 3);
+            validateWinningOptions(4, 5, 6);
+            validateWinningOptions(7, 8, 9);
+            validateWinningOptions(3, 6, 9);
+            validateWinningOptions(2, 5, 8);
+            validateWinningOptions(1, 4, 7);
+            validateWinningOptions(3, 5, 7);
+            validateWinningOptions(1, 5, 9);
 
-            turno = turno === 1 ? 2 : 1;
+            turn = turn === 1 ? 2 : 1;
         } else {
             alert('No puede añadir ninguna ficha más');
         }
 
         // casuítica de que estén 6 celdas seleccionadas y se de click a una celda que le pertenezca al jugador
-    } else if (arrayTurno.length >= 6 && celda.seleccionadaPor == turno) {
-        mostrarOcultarFicha('none', posicion);
-        celda.seleccionada = false;
-        celda.seleccionadaPor = undefined;
+    } else if (arrayTurn.length >= 6 && cell.selectedFor == turn) {
+        showHideIcon('none', position);
+        cell.selected = false;
+        cell.selectedFor = undefined;
     }
 
 
-    console.log(celda)
-    mostrarInformacion()
-    console.log(arrayTurno)
+    console.log(cell)
+    showInformation()
+    console.log(arrayTurn)
 };
 
-mostrarOcultarFicha = (display, posicion) => {
-    if (turno == 1) {
-        const cruz = document.getElementById(`icon${posicion}-x`);
-        cruz.style.display = display;
+showHideIcon = (display, position) => {
+    if (turn == 1) {
+        const cross = document.getElementById(`icon${position}-x`);
+        cross.style.display = display;
     } else {
-        const circulo = document.getElementById(`icon${posicion}-o`);
-        circulo.style.display = display;
+        const circle = document.getElementById(`icon${position}-o`);
+        circle.style.display = display;
     }
 };
 
-
-
-const mostrarInformacion = () => {
-    if (turno == 1) {
-        parrafoTurno.innerHTML = " ";
-        const nombre = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[0].nombre;
-        parrafoTurno.innerHTML += `<p>Turno de ${nombre}</p>`;
+const showInformation = () => {
+    if (turn == 1) {
+        textTurn.innerHTML = " ";
+        const name = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[0].name;
+        textTurn.innerHTML += `<p>Turno de ${name}</p>`;
     } else {
-        parrafoTurno.innerHTML = " ";
-        const nombre = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[1].nombre;
-        parrafoTurno.innerHTML += `<p>Turno de ${nombre}</p>`;
+        textTurn.innerHTML = " ";
+        const name = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[1].name;
+        textTurn.innerHTML += `<p>Turno de ${name}</p>`;
     }
 
 };
 
-const validarPosicionesGanadoras = (pos1, pos2, pos3) => {
-    let arrayJugadorTurno = celdas.filter(celda => celda.seleccionadaPor == turno);
-    if (arrayJugadorTurno.length == 3) {
-        if (arrayJugadorTurno[0].posicion == pos1 && arrayJugadorTurno[1].posicion == pos2 &&
-            arrayJugadorTurno[2].posicion == pos3) {
+const validateWinningOptions = (pos1, pos2, pos3) => {
+    let arrayPlayerTurn = cells.filter(cell => cell.selectedFor == turn);
+    if (arrayPlayerTurn.length == 3) {
+        if (arrayPlayerTurn[0].position == pos1 && arrayPlayerTurn[1].position == pos2 &&
+            arrayPlayerTurn[2].position == pos3) {
             alert("Enhorabuena has ganado")
         }
     }
-}
-mostrarInformacion();
+};
+showInformation();
 

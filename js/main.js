@@ -76,7 +76,7 @@ const showPlayerData = () => {
             }
         ]
         sessionStorage.setItem('LISTA_JUGADORES', JSON.stringify(playersList));
-        window.location.href = "start.html";
+        window.location.href = "play.html";
     }
 };
 
@@ -111,31 +111,26 @@ const clickIcon = (position) => {
         } else {
             alert('No puede añadir ninguna ficha más');
         }
-        /// Casuística de que jugador 2 sea CPU
 
+        /// Casuística de que jugador 2 sea CPU
         if (humanJ2 == false && turn == 2) {
             const arrayJ2 = cells.filter(cell => cell.selectedFor == 2);
-            console.log(arrayJ2)
             const arrayFree = cells.filter(cell => cell.selected == false);
             let numRandom = Math.floor(Math.random() * arrayFree.length);
+            console.log(numRandom)
             arrayFree[numRandom].selected = true;
             arrayFree[numRandom].selectedFor = turn;
             positionRandom = arrayFree[numRandom].position
             showHideIcon('block', positionRandom)
 
-
-
             if (arrayJ2.length >= 3) {
                 const arrayBusy = cells.filter(cell => cell.selected == true && cell.selectedFor == 2);
-                console.log(arrayBusy)
                 let numRandom = Math.floor(Math.random() * arrayBusy.length);
+                console.log(numRandom)
                 positionRandom = arrayBusy[numRandom].position
-                console.log(positionRandom)
                 showHideIcon('none', positionRandom);
                 arrayBusy[numRandom].selected = false;
                 arrayBusy[numRandom].selectedFor = undefined;
-
-                console.log(cells)
             }
             validateWinningOptions(1, 2, 3);
             validateWinningOptions(4, 5, 6);
@@ -145,11 +140,11 @@ const clickIcon = (position) => {
             validateWinningOptions(1, 4, 7);
             validateWinningOptions(3, 5, 7);
             validateWinningOptions(1, 5, 9);
-            console.log(turn)
             turn = turn === 1 ? 2 : 1;
 
         };
-        // casuítica de que estén 6 celdas seleccionadas y se de click a una celda que le pertenezca al jugador
+
+     // casuítica de que estén 6 celdas seleccionadas y se de click a una celda que le pertenezca al jugador
     } else if (arrayTurn.length >= 6 && cell.selectedFor == turn) {
         showHideIcon('none', position);
         cell.selected = false;
@@ -175,15 +170,17 @@ showHideIcon = (display, position) => {
 };
 
 // Mostrar información jugador
+const nameP1 = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[0].name;
+const nameP2 = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[1].name;
 const showInformation = () => {
     if (turn == 1) {
         textTurn.innerHTML = " ";
-        const name = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[0].name;
-        textTurn.innerHTML += `<p>Turno de ${name}</p>`;
+
+        textTurn.innerHTML += `<p>Turno de ${nameP1}</p>`;
     } else {
         textTurn.innerHTML = " ";
-        const name = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[1].name;
-        textTurn.innerHTML += `<p>Turno de ${name}</p>`;
+
+        textTurn.innerHTML += `<p>Turno de ${nameP2}</p>`;
     }
 
 };
@@ -194,9 +191,14 @@ const validateWinningOptions = (pos1, pos2, pos3) => {
     if (arrayPlayerTurn.length == 3) {
         if (arrayPlayerTurn[0].position == pos1 && arrayPlayerTurn[1].position == pos2 &&
             arrayPlayerTurn[2].position == pos3) {
-            alert("Enhorabuena has ganado")
+            if (turn == 1) {
+                alert(`${nameP1} ha ganado`)
+            } else {
+                alert(`${nameP2} ha ganado`)
+            }
         }
     }
+
 };
 showInformation();
 

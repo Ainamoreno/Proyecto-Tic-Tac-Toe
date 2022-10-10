@@ -73,3 +73,12 @@ body {
     color: var(--brown2);
     background-color: var(--pink);
 }
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--pink);
+}

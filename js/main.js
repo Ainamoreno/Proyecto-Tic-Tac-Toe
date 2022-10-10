@@ -65,7 +65,7 @@ const mostrarDatosJugador = () => {
     if (nombreJugadorUno.value == "" || nombreJugadorDos.value == "") {
         alert('Vuelva a la página anterior e introduce datos válidos');
     } else {
-        listaJugadores = JSON.parse(localStorage.getItem('LISTA_JUGADORES'));
+        listaJugadores = JSON.parse(sessionStorage.getItem('LISTA_JUGADORES'));
 
         listaJugadores = [
             {
@@ -77,7 +77,7 @@ const mostrarDatosJugador = () => {
                 humano: opcionHumanoJ2.checked
             }
         ]
-        localStorage.setItem('LISTA_JUGADORES', JSON.stringify(listaJugadores));
+        sessionStorage.setItem('LISTA_JUGADORES', JSON.stringify(listaJugadores));
         window.location.href = "start.html";
     }
 }
@@ -94,13 +94,14 @@ const clickFicha = (posicion) => {
             celda.seleccionadaPor = turno;
             mostrarOcultarFicha('block', posicion);
 
-            let arrayJugadorTurno = celdas.filter(celda => celda.seleccionadaPor == turno);
-            if (arrayJugadorTurno.length == 3) {
-                if (arrayJugadorTurno[0].posicion == 1 && arrayJugadorTurno[1].posicion == 2 && 
-                    arrayJugadorTurno[2].posicion == 3) {
-                    alert("Enhorabuena has ganado")
-                }
-            }
+            validarPosicionesGanadoras(1, 2, 3);
+            validarPosicionesGanadoras(4, 5, 6);
+            validarPosicionesGanadoras(7, 8, 9);
+            validarPosicionesGanadoras(3, 6, 9);
+            validarPosicionesGanadoras(2, 5, 8);
+            validarPosicionesGanadoras(1, 4, 7);
+            validarPosicionesGanadoras(3, 5, 7);
+            validarPosicionesGanadoras(1, 5, 9);
 
             turno = turno === 1 ? 2 : 1;
         } else {
@@ -118,8 +119,6 @@ const clickFicha = (posicion) => {
     console.log(celda)
     mostrarInformacion()
     console.log(arrayTurno)
-
-
 };
 
 mostrarOcultarFicha = (display, posicion) => {
@@ -137,14 +136,24 @@ mostrarOcultarFicha = (display, posicion) => {
 const mostrarInformacion = () => {
     if (turno == 1) {
         parrafoTurno.innerHTML = " ";
-        const nombre = JSON.parse(localStorage.getItem("LISTA_JUGADORES"))[0].nombre;
+        const nombre = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[0].nombre;
         parrafoTurno.innerHTML += `<p>Turno de ${nombre}</p>`;
     } else {
         parrafoTurno.innerHTML = " ";
-        const nombre = JSON.parse(localStorage.getItem("LISTA_JUGADORES"))[1].nombre;
+        const nombre = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[1].nombre;
         parrafoTurno.innerHTML += `<p>Turno de ${nombre}</p>`;
     }
 
 };
+
+const validarPosicionesGanadoras = (pos1, pos2, pos3) => {
+    let arrayJugadorTurno = celdas.filter(celda => celda.seleccionadaPor == turno);
+    if (arrayJugadorTurno.length == 3) {
+        if (arrayJugadorTurno[0].posicion == pos1 && arrayJugadorTurno[1].posicion == pos2 &&
+            arrayJugadorTurno[2].posicion == pos3) {
+            alert("Enhorabuena has ganado")
+        }
+    }
+}
 mostrarInformacion();
 

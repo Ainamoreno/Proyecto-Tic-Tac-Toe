@@ -80,6 +80,9 @@ const showPlayerData = () => {
     }
 };
 
+
+
+
 const humanJ1 = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[0].human;
 const humanJ2 = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[1].human;
 
@@ -124,25 +127,24 @@ const clickIcon = (position) => {
 
 // Función para jugador CPU
 const turnCpu = () => {
+    const arrayBusy = cells.filter(cell => cell.selected == true && cell.selectedFor == 2);
+    let numRandomBusy = Math.floor(Math.random() * arrayBusy.length);
+
     setTimeout(() => {
-        if (humanJ2 == false && turn == 2) {
+        if (humanJ2 == false) {
             const arrayJ2 = cells.filter(cell => cell.selectedFor == 2);
-            const arrayFree = cells.filter(cell => cell.selected == false);
-            let numRandom = Math.floor(Math.random() * arrayFree.length);
-            console.log(numRandom)
-            arrayFree[numRandom].selected = true;
-            arrayFree[numRandom].selectedFor = turn;
-            positionRandom = arrayFree[numRandom].position
+            const arrayFree = cells.filter(cell => cell.selected == false && cell.position !== numRandomBusy);
+            let numRandomFree = Math.floor(Math.random() * arrayFree.length);
+            arrayFree[numRandomFree].selected = true;
+            arrayFree[numRandomFree].selectedFor = turn;
+            positionRandom = arrayFree[numRandomFree].position
             showHideIcon('block', positionRandom)
 
             if (arrayJ2.length >= 3) {
-                const arrayBusy = cells.filter(cell => cell.selected == true && cell.selectedFor == 2);
-                let numRandom = Math.floor(Math.random() * arrayBusy.length);
-                console.log(numRandom)
-                positionRandom = arrayBusy[numRandom].position
+                positionRandom = arrayBusy[numRandomBusy].position
                 showHideIcon('none', positionRandom);
-                arrayBusy[numRandom].selected = false;
-                arrayBusy[numRandom].selectedFor = undefined;
+                arrayBusy[numRandomBusy].selected = false;
+                arrayBusy[numRandomBusy].selectedFor = undefined;
             }
             validateWinningOptions(1, 2, 3);
             validateWinningOptions(4, 5, 6);
@@ -152,13 +154,13 @@ const turnCpu = () => {
             validateWinningOptions(1, 4, 7);
             validateWinningOptions(3, 5, 7);
             validateWinningOptions(1, 5, 9);
+
             turn = turn === 1 ? 2 : 1;
 
         };
     }, 1000)
 
 }
-
 // Mostrar u ocultar ficha
 showHideIcon = (display, position) => {
     if (turn == 2 && humanJ2 == false) {
@@ -202,7 +204,6 @@ const validateWinningOptions = (pos1, pos2, pos3) => {
                 showPopup();
                 hideIcons();
 
-
             } else {
                 const textWinner = document.getElementById('text-winner');
                 textWinner.innerHTML = `${nameP2} ha sido ganador/a de la partida actual.`
@@ -214,6 +215,7 @@ const validateWinningOptions = (pos1, pos2, pos3) => {
 
 };
 
+/// Pop-up del ganador
 let popup = document.querySelector('.popup');
 let close = document.querySelector('.close');
 let confe = document.querySelector('#my-canvas');
@@ -235,14 +237,17 @@ var confettiSettings = { target: 'my-canvas' };
 var confetti = new ConfettiGenerator(confettiSettings);
 confetti.render();
 
-
+// Ocultar iconos
 const hideIcons = () => {
-    const iconsX = document.getElementsByClassName('icon-x');
+    setTimeout(() => {
+         const iconsX = document.getElementsByClassName('icon-x');
     let arrayIconsX = Array.from(iconsX);
     arrayIconsX.map(icon => icon = icon.style.display = 'none')
     const iconsO = document.getElementsByClassName('icon-o');
     let arrayIconsO = Array.from(iconsO);
     arrayIconsO.map(icon => icon = icon.style.display = 'none')
+    }, 2000)
+   
 };
 
 

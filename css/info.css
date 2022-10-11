@@ -1,0 +1,12 @@
+:root {
+    --pink: #e9d6e8;
+    --brown: #6d6d6d83;
+    --brown2: #5a5856;
+
+}
+
+.input-player {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--brown2);
+}

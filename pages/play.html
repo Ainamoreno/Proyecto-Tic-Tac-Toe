@@ -13,7 +13,7 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/index.css">
-    <!-- <link rel="stylesheet" href="../css/start.css"> -->
+    <link rel="stylesheet" href="../css/play.css">
     <script src="https://kit.fontawesome.com/6da7aeac50.js" crossorigin="anonymous"></script>
     <title>Tic Tac Toe</title>
 </head>
@@ -46,7 +46,8 @@
                                 class="fa-solid fa-xmark fa-4x icon-x" style="display:none;" id="icon4-x"></i><i
                                 class="fa-regular fa-circle fa-4x icon-o" id="icon4-o" style="display: none;"></i>
                         </div>
-                        <div onclick="clickIcon(5)" class="col col-draw d-flex justify-content-center align-items-center"><i
+                        <div onclick="clickIcon(5)"
+                            class="col col-draw d-flex justify-content-center align-items-center"><i
                                 class="fa-solid fa-xmark fa-4x icon-x" style="display:none;" id="icon5-x"></i><i
                                 class="fa-regular fa-circle fa-4x icon-o" id="icon5-o" style="display: none;"></i>
                         </div>
@@ -56,11 +57,13 @@
                         </div>
                     </div>
                     <div class="row row-draw3">
-                        <div onclick="clickIcon(7)" class="col col-draw d-flex justify-content-center align-items-center"><i
+                        <div onclick="clickIcon(7)"
+                            class="col col-draw d-flex justify-content-center align-items-center"><i
                                 class="fa-solid fa-xmark fa-4x icon-x" style="display:none;" id="icon7-x"></i><i
                                 class="fa-regular fa-circle fa-4x icon-o" id="icon7-o" style="display: none;"></i>
                         </div>
-                        <div onclick="clickIcon(8)" class="col col-draw d-flex justify-content-center align-items-center"><i
+                        <div onclick="clickIcon(8)"
+                            class="col col-draw d-flex justify-content-center align-items-center"><i
                                 class="fa-solid fa-xmark fa-4x icon-x" style="display:none;" id="icon8-x"></i><i
                                 class="fa-regular fa-circle fa-4x icon-o" id="icon8-o" style="display: none;"></i>
                         </div>
@@ -70,19 +73,31 @@
                         </div>
                     </div>
                 </div>
-                <div  class="col-md-4  ">
+
+
+
+                <div class="col-md-4  ">
                     <h5 class="d-flex justify-content-center">Información de la partida</h5>
                     <div id="turno-de"> </div>
                     <div>
-                        <button>Reiniciar partida</button>
-                        <button>Volver a pantalla anterior</button>
+                        <a class="btn-reset-play" href="./play.html"> Reiniciar partida</a>
+                        <a class="btn-reset-play" href="./info.html">Volver a pantalla anterior</a>
                     </div>
-                    
+
                 </div>
+
             </div>
         </div>
+        <!-- Modal ganador -->
+        <div class=" popup">
+            <h2>Y EL GANADOR HA SIDO...</h2>
+            <p id="text-winner"></p>
+            <div class="close">X</div>
+        </div>
+       
     </div>
-    <div></div>
+     <canvas id="my-canvas"></canvas>
+    <script src="../confetti/index.min.js"></script>
     <script src="../js/main.js"></script>
 </body>
 

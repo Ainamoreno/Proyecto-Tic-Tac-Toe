@@ -58,7 +58,7 @@ const cells = [
         selected: false,
         selectedFor: undefined
     },
-]
+];
 
 // Función datos jugador
 const showPlayerData = () => {
@@ -82,8 +82,6 @@ const showPlayerData = () => {
 
 const humanJ1 = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[0].human;
 const humanJ2 = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[1].human;
-
-
 
 const clickIcon = (position) => {
     let arrayTurn = cells.filter(cell => cell.selectedFor == 1 || cell.selectedFor == 2);
@@ -113,6 +111,20 @@ const clickIcon = (position) => {
         }
 
         /// Casuística de que jugador 2 sea CPU
+        turnCpu()
+
+        // casuítica de que estén 6 celdas seleccionadas y se de click a una celda que le pertenezca al jugador
+    } else if (arrayTurn.length >= 6 && cell.selectedFor == turn) {
+        showHideIcon('none', position);
+        cell.selected = false;
+        cell.selectedFor = undefined;
+    }
+    showInformation()
+};
+
+// Función para jugador CPU
+const turnCpu = () => {
+    setTimeout(() => {
         if (humanJ2 == false && turn == 2) {
             const arrayJ2 = cells.filter(cell => cell.selectedFor == 2);
             const arrayFree = cells.filter(cell => cell.selected == false);
@@ -143,16 +155,9 @@ const clickIcon = (position) => {
             turn = turn === 1 ? 2 : 1;
 
         };
+    }, 1000)
 
-     // casuítica de que estén 6 celdas seleccionadas y se de click a una celda que le pertenezca al jugador
-    } else if (arrayTurn.length >= 6 && cell.selectedFor == turn) {
-        showHideIcon('none', position);
-        cell.selected = false;
-        cell.selectedFor = undefined;
-    }
-    showInformation()
-};
-
+}
 
 // Mostrar u ocultar ficha
 showHideIcon = (display, position) => {
@@ -192,13 +197,54 @@ const validateWinningOptions = (pos1, pos2, pos3) => {
         if (arrayPlayerTurn[0].position == pos1 && arrayPlayerTurn[1].position == pos2 &&
             arrayPlayerTurn[2].position == pos3) {
             if (turn == 1) {
-                alert(`${nameP1} ha ganado`)
+                const textWinner = document.getElementById('text-winner');
+                textWinner.innerHTML = `${nameP1} ha sido ganador/a de la partida actual.`
+                showPopup();
+                hideIcons();
+
+
             } else {
-                alert(`${nameP2} ha ganado`)
+                const textWinner = document.getElementById('text-winner');
+                textWinner.innerHTML = `${nameP2} ha sido ganador/a de la partida actual.`
+                showPopup();
+                hideIcons();
             }
         }
     }
 
 };
+
+let popup = document.querySelector('.popup');
+let close = document.querySelector('.close');
+let confe = document.querySelector('#my-canvas');
+
+const showPopup = () => {
+    popup.classList.add('active')
+    confe.classList.add('active')
+
+    hiddenPopup()
+};
+const hiddenPopup = () => {
+    close.addEventListener('click', () => {
+        popup.classList.remove('active')
+        confe.classList.remove('active')
+    })
+};
+
+var confettiSettings = { target: 'my-canvas' };
+var confetti = new ConfettiGenerator(confettiSettings);
+confetti.render();
+
+
+const hideIcons = () => {
+    const iconsX = document.getElementsByClassName('icon-x');
+    let arrayIconsX = Array.from(iconsX);
+    arrayIconsX.map(icon => icon = icon.style.display = 'none')
+    const iconsO = document.getElementsByClassName('icon-o');
+    let arrayIconsO = Array.from(iconsO);
+    arrayIconsO.map(icon => icon = icon.style.display = 'none')
+};
+
+
 showInformation();
 

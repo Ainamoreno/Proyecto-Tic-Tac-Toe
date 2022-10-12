@@ -80,8 +80,21 @@ const showPlayerData = () => {
     }
 };
 
+// Mostrar información jugador
+const nameP1 = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[0].name;
+const nameP2 = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[1].name;
+const showInformation = () => {
+    if (turn == 1) {
+        textTurn.innerHTML = " ";
 
+        textTurn.innerHTML += `<p>Turno de ${nameP1}</p>`;
+    } else {
+        textTurn.innerHTML = " ";
 
+        textTurn.innerHTML += `<p>Turno de ${nameP2}</p>`;
+    }
+
+};
 
 const humanJ1 = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[0].human;
 const humanJ2 = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[1].human;
@@ -89,7 +102,6 @@ const humanJ2 = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[1].human;
 const clickIcon = (position) => {
     let arrayTurn = cells.filter(cell => cell.selectedFor == 1 || cell.selectedFor == 2);
     let cell = cells.find(cell => cell.position == position);
-
     // casuítica de que entre en el if en caso de que la celda no esté seleccionada
     if (cell.selected == false) {
 
@@ -109,58 +121,100 @@ const clickIcon = (position) => {
 
             turn = turn === 1 ? 2 : 1;
 
-        } else {
-            alert('No puede añadir ninguna ficha más');
         }
 
-        /// Casuística de que jugador 2 sea CPU
-        turnCpu()
+        showIconCpu(humanJ1, 1);
+        hideIconCpu(humanJ1, 1);
+        showIconCpu(humanJ2, 2);
+        hideIconCpu(humanJ2, 2);
 
-        // casuítica de que estén 6 celdas seleccionadas y se de click a una celda que le pertenezca al jugador
-    } else if (arrayTurn.length >= 6 && cell.selectedFor == turn) {
-        showHideIcon('none', position);
-        cell.selected = false;
-        cell.selectedFor = undefined;
+    } else {
+        if (arrayTurn.length >= 6 && cell.selectedFor == turn) {
+            console.log(cells)
+            cell.selected = false;
+            cell.selectedFor = undefined;
+            showHideIcon('none', position);
+        }
     }
+
     showInformation()
 };
 
 // Función para jugador CPU
-const turnCpu = () => {
-    const arrayBusy = cells.filter(cell => cell.selected == true && cell.selectedFor == 2);
+showIconCpu = (human, num) => {
+    const arrayBusy = cells.filter(cell => cell.selected == true && cell.selectedFor == num);
     let numRandomBusy = Math.floor(Math.random() * arrayBusy.length);
+    const arrayFree = cells.filter(cell => cell.selected == false && cell.position !== numRandomBusy);
+    let numRandomFree = Math.floor(Math.random() * arrayFree.length);
+    const arrayJ = cells.filter(cell => cell.selectedFor == num);
+    if (human == false) {
 
-    setTimeout(() => {
-        if (humanJ2 == false) {
-            const arrayJ2 = cells.filter(cell => cell.selectedFor == 2);
-            const arrayFree = cells.filter(cell => cell.selected == false && cell.position !== numRandomBusy);
-            let numRandomFree = Math.floor(Math.random() * arrayFree.length);
-            arrayFree[numRandomFree].selected = true;
-            arrayFree[numRandomFree].selectedFor = turn;
-            positionRandom = arrayFree[numRandomFree].position
-            showHideIcon('block', positionRandom)
+        setTimeout(() => {
+            if (arrayJ.length <= 2) {
+                arrayFree[numRandomFree].selected = true;
+                arrayFree[numRandomFree].selectedFor = num;
+                positionRandom = arrayFree[numRandomFree].position
+                showHideIcon('block', positionRandom)
 
-            if (arrayJ2.length >= 3) {
+                validateWinningOptions(1, 2, 3);
+                validateWinningOptions(4, 5, 6);
+                validateWinningOptions(7, 8, 9);
+                validateWinningOptions(3, 6, 9);
+                validateWinningOptions(2, 5, 8);
+                validateWinningOptions(1, 4, 7);
+                validateWinningOptions(3, 5, 7);
+                validateWinningOptions(1, 5, 9);
+
+                turn = turn === 1 ? 2 : 1;
+            } showInformation();
+        }, 1000)
+    }
+
+};
+
+hideIconCpu = (human, num) => {
+    const arrayBusy = cells.filter(cell => cell.selected == true && cell.selectedFor == num);
+    let numRandomBusy = Math.floor(Math.random() * arrayBusy.length);
+    const arrayFree = cells.filter(cell => cell.selected == false && cell.position !== numRandomBusy);
+    let numRandomFree = Math.floor(Math.random() * arrayFree.length);
+    const arrayJ = cells.filter(cell => cell.selectedFor == num);
+    if (human == false) {
+        setTimeout(() => {
+            if (arrayJ.length >= 3) {
+
                 positionRandom = arrayBusy[numRandomBusy].position
-                showHideIcon('none', positionRandom);
+                console.log(positionRandom)
                 arrayBusy[numRandomBusy].selected = false;
                 arrayBusy[numRandomBusy].selectedFor = undefined;
+                showHideIcon('none', positionRandom)
+
+                arrayFree[numRandomFree].selected = true;
+                arrayFree[numRandomFree].selectedFor = num;
+                positionRandom = arrayFree[numRandomFree].position
+                showHideIcon('block', positionRandom)
+
+                validateWinningOptions(1, 2, 3);
+                validateWinningOptions(4, 5, 6);
+                validateWinningOptions(7, 8, 9);
+                validateWinningOptions(3, 6, 9);
+                validateWinningOptions(2, 5, 8);
+                validateWinningOptions(1, 4, 7);
+                validateWinningOptions(3, 5, 7);
+                validateWinningOptions(1, 5, 9);
+                turn = turn === 1 ? 2 : 1;
             }
-            validateWinningOptions(1, 2, 3);
-            validateWinningOptions(4, 5, 6);
-            validateWinningOptions(7, 8, 9);
-            validateWinningOptions(3, 6, 9);
-            validateWinningOptions(2, 5, 8);
-            validateWinningOptions(1, 4, 7);
-            validateWinningOptions(3, 5, 7);
-            validateWinningOptions(1, 5, 9);
+            showInformation();
+        }, 1000)
 
-            turn = turn === 1 ? 2 : 1;
+    }
 
-        };
-    }, 1000)
+};
 
-}
+if (humanJ1 == false && humanJ2 == true) {
+
+    showIconCpu(humanJ1, 1)
+};
+
 // Mostrar u ocultar ficha
 showHideIcon = (display, position) => {
     if (turn == 2 && humanJ2 == false) {
@@ -176,21 +230,7 @@ showHideIcon = (display, position) => {
     }
 };
 
-// Mostrar información jugador
-const nameP1 = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[0].name;
-const nameP2 = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[1].name;
-const showInformation = () => {
-    if (turn == 1) {
-        textTurn.innerHTML = " ";
 
-        textTurn.innerHTML += `<p>Turno de ${nameP1}</p>`;
-    } else {
-        textTurn.innerHTML = " ";
-
-        textTurn.innerHTML += `<p>Turno de ${nameP2}</p>`;
-    }
-
-};
 
 // Validar opciones ganadoras
 const validateWinningOptions = (pos1, pos2, pos3) => {
@@ -240,14 +280,14 @@ confetti.render();
 // Ocultar iconos
 const hideIcons = () => {
     setTimeout(() => {
-         const iconsX = document.getElementsByClassName('icon-x');
-    let arrayIconsX = Array.from(iconsX);
-    arrayIconsX.map(icon => icon = icon.style.display = 'none')
-    const iconsO = document.getElementsByClassName('icon-o');
-    let arrayIconsO = Array.from(iconsO);
-    arrayIconsO.map(icon => icon = icon.style.display = 'none')
+        const iconsX = document.getElementsByClassName('icon-x');
+        let arrayIconsX = Array.from(iconsX);
+        arrayIconsX.map(icon => icon = icon.style.display = 'none')
+        const iconsO = document.getElementsByClassName('icon-o');
+        let arrayIconsO = Array.from(iconsO);
+        arrayIconsO.map(icon => icon = icon.style.display = 'none')
     }, 2000)
-   
+
 };
 
 

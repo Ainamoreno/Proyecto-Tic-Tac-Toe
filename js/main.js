@@ -241,7 +241,8 @@ const validateWinningOptions = (pos1, pos2, pos3) => {
             if (turn == 1) {
                 const textWinner = document.getElementById('text-winner');
                 textWinner.innerHTML = `${nameP1} ha sido ganador/a de la partida actual.`
-                showPopup();
+                window.location.href = "ganador.html";
+
                 hideIcons();
 
             } else {

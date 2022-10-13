@@ -1,7 +1,8 @@
 const saveWinner = () => {
     let textWinner = document.getElementById('text-winner');
     let nameWinnerP = JSON.parse(sessionStorage.getItem("WINNER"));
-    textWinner.innerHTML = `${nameWinnerP} ha ganado la partida`
+    let counter = JSON.parse(sessionStorage.getItem("COUNTER"));
+    textWinner.innerHTML = `${nameWinnerP} ha ganado la partida en el turno número ${counter}`
 };
 
 saveWinner();

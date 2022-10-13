@@ -35,7 +35,7 @@
 
 .btn-reset-play:hover {
     background-color: black;
-    color: var(--pink);
+    color: white;
 }
 
 .div-btns {
@@ -50,6 +50,6 @@ h2 {
     color: black;
 }
 
-h5 {
+h6 {
     margin-bottom: 1em;
 }

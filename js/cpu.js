@@ -67,7 +67,6 @@ hideIconCpu = (human, num) => {
         }, 1000)
 
     }
-
 };
 
 if (humanJ1 == false && humanJ2 == true) {

@@ -85,15 +85,15 @@ const showPlayerData = () => {
 const nameP1 = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[0].name;
 const nameP2 = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[1].name;
 const showInformation = () => {
-    numCounter.innerHTML = counter
+    numCounter.innerHTML = `<p><strong>Turno: </strong><i>${counter}</i></p>`;
     if (turn == 1) {
         textTurn.innerHTML = " ";
 
-        textTurn.innerHTML += `<p>Turno de ${nameP1}</p>`;
+        textTurn.innerHTML += `<p><strong>Turno de: </strong><i>${nameP1}</i></p>`;
     } else {
         textTurn.innerHTML = " ";
 
-        textTurn.innerHTML += `<p>Turno de ${nameP2}</p>`;
+        textTurn.innerHTML += `<p><strong>Turno de: </strong><i>${nameP2}</i></p>`;
     }
 
 };
@@ -123,7 +123,7 @@ const clickIcon = (position) => {
             validateWinningOptions(1, 5, 9);
 
             turn = turn === 1 ? 2 : 1;
-            
+
             showIconCpu(humanJ1, 1);
             hideIconCpu(humanJ1, 1);
             showIconCpu(humanJ2, 2);
@@ -174,11 +174,13 @@ const validateWinningOptions = (pos1, pos2, pos3) => {
             if (turn == 1) {
                 window.location.href = "winner.html";
                 sessionStorage.setItem('WINNER', JSON.stringify(nameP1));
+                sessionStorage.setItem('COUNTER', JSON.stringify(counter));
                 hideIcons();
 
             } else {
                 window.location.href = "winner.html";
                 sessionStorage.setItem('WINNER', JSON.stringify(nameP2));
+                sessionStorage.setItem('COUNTER', JSON.stringify(counter));
                 hideIcons();
 
             }

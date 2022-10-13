@@ -230,7 +230,7 @@ showHideIcon = (display, position) => {
     }
 };
 
-
+showInformation();
 
 // Validar opciones ganadoras
 const validateWinningOptions = (pos1, pos2, pos3) => {
@@ -239,40 +239,28 @@ const validateWinningOptions = (pos1, pos2, pos3) => {
         if (arrayPlayerTurn[0].position == pos1 && arrayPlayerTurn[1].position == pos2 &&
             arrayPlayerTurn[2].position == pos3) {
             if (turn == 1) {
-                const textWinner = document.getElementById('text-winner');
-                textWinner.innerHTML = `${nameP1} ha sido ganador/a de la partida actual.`
                 window.location.href = "ganador.html";
-
+                sessionStorage.setItem('WINNER', JSON.stringify(nameP1));
                 hideIcons();
 
             } else {
-                const textWinner = document.getElementById('text-winner');
-                textWinner.innerHTML = `${nameP2} ha sido ganador/a de la partida actual.`
-                showPopup();
+                window.location.href = "ganador.html";
+                sessionStorage.setItem('WINNER', JSON.stringify(nameP2));
                 hideIcons();
+
             }
         }
     }
-
 };
+const saveWinner = () => {
+    let textWinner = document.getElementById('text-winner');
+    let nameWinnerP1 = JSON.parse(sessionStorage.getItem("WINNER"));
+    textWinner.innerHTML = `${nameWinnerP1} ha ganado la partida`
+}
+saveWinner();
 
 /// Pop-up del ganador
-let popup = document.querySelector('.popup');
-let close = document.querySelector('.close');
 let confe = document.querySelector('#my-canvas');
-
-const showPopup = () => {
-    popup.classList.add('active')
-    confe.classList.add('active')
-
-    hiddenPopup()
-};
-const hiddenPopup = () => {
-    close.addEventListener('click', () => {
-        popup.classList.remove('active')
-        confe.classList.remove('active')
-    })
-};
 
 var confettiSettings = { target: 'my-canvas' };
 var confetti = new ConfettiGenerator(confettiSettings);
@@ -292,5 +280,5 @@ const hideIcons = () => {
 };
 
 
-showInformation();
+
 

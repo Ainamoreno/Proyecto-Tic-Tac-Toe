@@ -1,40 +1,18 @@
-:root {
-    --pink: #e9d6e8;
-    --brown: #e0dada;
-    --brown2: #3f392ed0;
-}
-
 .popup {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: white;
+    background: rgba(255, 255, 255, 0.692);
     color: var(--brown2);
     border-radius: 0.5em;
-    width: 20em;
-    height: 10em;
+    width: 30em;
+    height: 15em;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 2em;
-    visibility: hidden;
-}
-
-.popup.active {
-    visibility: visible;
-}
-
-.close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 0.5em 0.5em;
-    background-color: rgb(255, 0, 0);
-    color: white;
-    cursor: pointer;
-    border-radius: 0 0.5em 0 0.5em;
 }
 
 #my-canvas {
@@ -44,11 +22,6 @@
     width: 100vw;
     height: 100vh;
     z-index: -1;
-    visibility: hidden;
-}
-
-#my-canvas.active {
-    visibility: visible;
 }
 
 .btn-reset-play {
@@ -56,9 +29,27 @@
     border-radius: 0.5em;
     border: 2px solid;
     padding: 0.3em;
+    margin-bottom: 1em;
+    width: fit-content;
 }
 
 .btn-reset-play:hover {
-    background-color: var(--brown2);
+    background-color: black;
     color: var(--pink);
+}
+
+.div-btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h2 {
+    font-weight: 700;
+    color: black;
+}
+
+h5 {
+    margin-bottom: 1em;
 }

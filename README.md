@@ -16,8 +16,9 @@ En la siguiente pantalla, podremos rellenar los nombres de ambos jugadores (en c
 Y por último la pantalla del juego, en el cual encontraremos el tablero de 3x3 y a su derecha un panel de información de la partida. Nos irá diciendo de quien es el turno y un contador de los turnos totales que llevamos por partida.
 
 ##  <div id = "imagenes"> Imágenes
-  
-  ![image](https://user-images.githubusercontent.com/110055279/195912358-090f9f75-c3d3-4b27-8331-9ccb3f93d8dc.png)
+
+<img src="https://user-images.githubusercontent.com/110055279/195914063-21b010c4-5e5c-40cc-bc3c-fe1005b3823c.png" align="center" height="350" width="650" >
+<img src="https://user-images.githubusercontent.com/110055279/195914763-114ca985-085d-4c68-a600-aced74ffeea4.png" align="center" height="250" width="600" >
 
 ##  <div id = "funciones"> Funcionalidades
 - El usuario puede customizar el nombre del jugador únicamente antes de

@@ -2,17 +2,23 @@
 let cpuP1 = document.getElementById('player1-option2')
 let cpuP2 = document.getElementById('player2-option2')
 cpuP1.addEventListener('click', () => {
+    namePlayer1.value = 'CPU'
+    namePlayer1.disabled = true;
     if (cpuP1.checked) {
         cpuP2 = document.getElementById("player2-option2")
         cpuP2.disabled = true;
     }
 });
 cpuP2.addEventListener('click', () => {
+    namePlayer2.value = 'CPU'
+    namePlayer2.disabled = true;
     if (cpuP2.checked) {
         cpuP1 = document.getElementById("player1-option2")
         cpuP1.disabled = true;
     }
 });
+
+
 
 // Función datos jugador
 const showPlayerData = () => {

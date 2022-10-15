@@ -10,3 +10,9 @@
     font-weight: 700;
     color: var(--brown2);
 }
+
+#msg-error {
+    color: red;
+    font-weight: 700;
+}
+

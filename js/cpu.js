@@ -7,8 +7,9 @@ showIconCpu = (human, num) => {
     const arrayJ = cells.filter(cell => cell.selectedFor == num);
     let arrayTurn = cells.filter(cell => cell.selectedFor == 1 || cell.selectedFor == 2);
     if (human == false) {
-
+        turnCpu = true;
         setTimeout(() => {
+            turnCpu = false;
             if (arrayTurn.length <= 5) {
                 counter++
                 arrayFree[numRandomFree].selected = true;
@@ -39,7 +40,9 @@ hideIconCpu = (human, num) => {
     const arrayJ = cells.filter(cell => cell.selectedFor == num);
     let arrayTurn = cells.filter(cell => cell.selectedFor == 1 || cell.selectedFor == 2);
     if (human == false) {
+        turnCpu = true;
         setTimeout(() => {
+            turnCpu = false;
             if (arrayTurn.length >= 6) {
 
                 positionRandom = arrayBusy[numRandomBusy].position

@@ -1,4 +1,10 @@
+// Inputs tipo radio
+const inputsRadioP1 = document.getElementsByName('optionsPlayer1');
+const inputsRadioP2 = document.getElementsByName('optionsPlayer2');
+
+
 // Divs | Párrafos de la partida
+const msgError = document.getElementById('msg-error');
 const textTurn = document.getElementById('turno-de');
 const numCounter = document.getElementById('counter');
 
@@ -11,8 +17,9 @@ const optionHumanJ1 = document.getElementById('player1-option1');
 const optionHumanJ2 = document.getElementById('player2-option1');
 let turn = 1;
 let counter = 0;
-// Objetos
+let turnCpu = false;
 
+// Objetos
 const cells = [
     {
         position: 1,
@@ -61,26 +68,6 @@ const cells = [
     },
 ];
 
-// Función datos jugador
-const showPlayerData = () => {
-    if (namePlayer1.value == "" || namePlayer2.value == "") {
-        alert('Vuelva a la página anterior e introduce datos válidos');
-    } else {
-        playersList = [
-            {
-                name: namePlayer1.value,
-                human: optionHumanJ1.checked
-            },
-            {
-                name: namePlayer2.value,
-                human: optionHumanJ2.checked
-            }
-        ]
-        sessionStorage.setItem('LISTA_JUGADORES', JSON.stringify(playersList));
-        window.location.href = "play.html";
-    }
-};
-
 // Mostrar información jugador
 const nameP1 = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[0].name;
 const nameP2 = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[1].name;
@@ -102,45 +89,45 @@ const humanJ1 = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[0].human;
 const humanJ2 = JSON.parse(sessionStorage.getItem("LISTA_JUGADORES"))[1].human;
 
 const clickIcon = (position) => {
-    let arrayTurn = cells.filter(cell => cell.selectedFor == 1 || cell.selectedFor == 2);
-    let cell = cells.find(cell => cell.position == position);
+    if (!turnCpu) {
+        let arrayTurn = cells.filter(cell => cell.selectedFor == 1 || cell.selectedFor == 2);
+        let cell = cells.find(cell => cell.position == position);
 
-    if (cell.selected == false) {
+        if (cell.selected == false) {
 
-        if (arrayTurn.length <= 5) {
-            counter++
-            cell.selected = true;
-            cell.selectedFor = turn;
-            showHideIcon('block', position);
+            if (arrayTurn.length <= 5) {
+                counter++
+                cell.selected = true;
+                cell.selectedFor = turn;
+                showHideIcon('block', position);
 
-            validateWinningOptions(1, 2, 3);
-            validateWinningOptions(4, 5, 6);
-            validateWinningOptions(7, 8, 9);
-            validateWinningOptions(3, 6, 9);
-            validateWinningOptions(2, 5, 8);
-            validateWinningOptions(1, 4, 7);
-            validateWinningOptions(3, 5, 7);
-            validateWinningOptions(1, 5, 9);
+                validateWinningOptions(1, 2, 3);
+                validateWinningOptions(4, 5, 6);
+                validateWinningOptions(7, 8, 9);
+                validateWinningOptions(3, 6, 9);
+                validateWinningOptions(2, 5, 8);
+                validateWinningOptions(1, 4, 7);
+                validateWinningOptions(3, 5, 7);
+                validateWinningOptions(1, 5, 9);
 
-            turn = turn === 1 ? 2 : 1;
+                turn = turn === 1 ? 2 : 1;
 
-            showIconCpu(humanJ1, 1);
-            hideIconCpu(humanJ1, 1);
-            showIconCpu(humanJ2, 2);
-            hideIconCpu(humanJ2, 2);
-        }
-
-
-
-
-    } else {
-        if (cell.selected == true) {
-            if (arrayTurn.length >= 6 && cell.selectedFor == turn) {
-                console.log(cells)
-                cell.selected = false;
-                cell.selectedFor = undefined;
-                showHideIcon('none', position);
+                showIconCpu(humanJ1, 1);
+                hideIconCpu(humanJ1, 1);
+                showIconCpu(humanJ2, 2);
+                hideIconCpu(humanJ2, 2);
             }
+
+        } else {
+            if (cell.selected == true) {
+                if (arrayTurn.length >= 6 && cell.selectedFor == turn) {
+                    console.log(cells)
+                    cell.selected = false;
+                    cell.selectedFor = undefined;
+                    showHideIcon('none', position);
+                }
+            }
+
         }
 
     }

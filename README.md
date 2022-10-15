@@ -20,8 +20,11 @@ Y por último la pantalla del juego, en el cual encontraremos el tablero de 3x3 
 <img src="https://user-images.githubusercontent.com/110055279/195914063-21b010c4-5e5c-40cc-bc3c-fe1005b3823c.png" align="center" height="350" width="650" >
 <img src="https://user-images.githubusercontent.com/110055279/195914763-114ca985-085d-4c68-a600-aced74ffeea4.png" align="center" height="250" width="600" >
 
-En caso de no introducir los datos de los jugadores, no permitirá acceder al juego.
+En caso de no introducir los datos de los jugadores, no permitirá acceder al juego. 
 <img src="https://user-images.githubusercontent.com/110055279/195984067-cd756633-3430-450c-8768-199c71864176.png" align="center" height="250" width="350" >
+  
+<img src="https://user-images.githubusercontent.com/110055279/195994153-706ab0d6-a162-40da-9f92-e46fcebbff2a.png" align="center" height="300" width="650" >
+Esta es la pantalla del juego, en la cual se encuentra la información de la partida (nombre a quien le pertenece el turno y el turno en el que se encuentra la partida)
 
 ##  <div id = "funciones"> Funcionalidades
 - El usuario puede customizar el nombre del jugador únicamente antes de

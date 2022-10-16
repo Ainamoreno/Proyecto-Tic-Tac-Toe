@@ -28,7 +28,7 @@ Y por último la pantalla del juego, en el cual encontraremos el tablero de 3x3 
   
 <p>Esta es la pantalla que aparece en el momento que un jugador gana la partida. </p>
 <img src="https://user-images.githubusercontent.com/110055279/195994647-4b75680c-e29a-4c2f-b5f5-cd6c523780e2.png" align="center" height="300" width="500" >
-Si le damos click a ***'Reiniciar partida'*** podremos hacer otra partida con los mismos nombres y tipo de jugadores. En caso de darle click a ***'Volver a la pantalla de información'*** podremos hacer otra partida cambiando el nombre y tipo de jugadores.
+ <p>Si le damos click a 'Reiniciar partida' podremos hacer otra partida con los mismos nombres y tipo de jugadores. En caso de darle click a 'Volver a la pantalla de información' podremos hacer otra partida cambiando el nombre y tipo de jugadores. </p>
 
   
 ##  <div id = "funciones"> Funcionalidades
